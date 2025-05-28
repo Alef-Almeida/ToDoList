@@ -19,11 +19,19 @@ public class TaskController {
 
     @PostMapping
     public ResponseEntity<Task> createTask(@RequestBody Task task) {
+        // Ao criar, uma tarefa geralmente não está completa.
+        // Certifique-se de que o campo 'completed' venha como false ou defina-o aqui.
+        if (task.isCompleted()) { // Uma tarefa nova não deveria começar como completa
+            task.setCompleted(false);
+        }
         return ResponseEntity.ok(taskService.createTask(task));
     }
 
     @GetMapping
     public ResponseEntity<List<Task>> getAllTasks() {
+        // Se você quiser que este endpoint retorne apenas tarefas pendentes:
+        // return ResponseEntity.ok(taskService.getPendingTasks());
+        // Caso contrário, ele continuará retornando todas as tarefas (pendentes e concluídas).
         return ResponseEntity.ok(taskService.getAllTasks());
     }
 
@@ -43,5 +51,17 @@ public class TaskController {
     public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
         return ResponseEntity.noContent().build();
+    }
+
+    // --- Novo endpoint para o histórico de tarefas concluídas ---
+    @GetMapping("/history")
+    public ResponseEntity<List<Task>> getCompletedTasksHistory() {
+        return ResponseEntity.ok(taskService.getCompletedTasks());
+    }
+
+    // Opcional: Adicionar um endpoint para listar apenas tarefas pendentes
+    @GetMapping("/pending")
+    public ResponseEntity<List<Task>> getPendingTasks() {
+        return ResponseEntity.ok(taskService.getPendingTasks());
     }
 }

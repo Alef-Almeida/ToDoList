@@ -83,3 +83,49 @@ button:hover {
     color: black;
     font-weight: bold;
 }
+
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.toggle-btn.completed-btn {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+}
+
+.completed-task-description {
+    text-decoration: line-through;
+    color: #888;
+}
+
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.toggle-btn.completed-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.completed-task-description {
+    text-decoration: line-through;
+    color: #888;
+}
+
+
+.filter-btn.bg-blue-600 {
+    background-color: #2563eb; 
+}
+
+.toggle-btn {
+    border: 1px solid transparent;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+
+.bg-red-500 {
+    border: 1px solid transparent; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
